@@ -2,26 +2,21 @@ import com.xhhold.plugin.version.AndroidConfig
 import com.xhhold.plugin.version.Libs
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("com.xhhold.plugin.version")
 }
 
 android {
-    namespace = AndroidConfig.namespaceApp
+    namespace = AndroidConfig.namespaceBridge
     compileSdk = AndroidConfig.compileSdk
 
     defaultConfig {
-        applicationId = AndroidConfig.applicationId
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
-        versionCode = AndroidConfig.versionCode
-        versionName = AndroidConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -40,32 +35,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.1"
-    }
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 }
 
 dependencies {
-    implementation(project(Libs.Local.bridge))
-    implementation(project(Libs.Local.core))
     implementation(Libs.coreKtx)
-    implementation(Libs.lifecycleRuntime)
-    implementation(Libs.activityCompose)
-    implementation(Libs.composeUi)
-    implementation(Libs.composeUiPreview)
-    implementation(Libs.composeMaterial3)
+    implementation(Libs.appcompat)
     testImplementation(Libs.junit)
     androidTestImplementation(Libs.testExt)
     androidTestImplementation(Libs.testEspresso)
-    androidTestImplementation(Libs.testComposeUiJunit)
-    debugImplementation(Libs.composeUiTooling)
-    debugImplementation(Libs.testComposeUiManifest)
 }

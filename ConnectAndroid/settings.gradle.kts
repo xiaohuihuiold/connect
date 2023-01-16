@@ -13,5 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Connect"
-include(":app")
 includeBuild("plugin-version")
+include(":app")
+include(":bridge")
+include(":core")
