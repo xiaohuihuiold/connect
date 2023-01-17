@@ -2,6 +2,7 @@ package com.xhhold.plugin.version
 
 object Libs {
 
+    private const val protobufVersion = "3.21.12"
     private const val coreKtxVersion = "1.7.0"
     private const val lifecycleRuntimeVersion = "2.4.1"
     private const val composeVersion = "1.1.1"
@@ -12,6 +13,7 @@ object Libs {
     private const val testExtVersion = "1.1.3"
     private const val testEspressoVersion = "3.4.0"
 
+    const val protobuf = "com.google.protobuf:protobuf-kotlin-lite:$protobufVersion"
     const val coreKtx = "androidx.core:core-ktx:$coreKtxVersion"
     const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleRuntimeVersion"
     const val activityCompose = "androidx.activity:activity-compose:$activityComposeVersion"

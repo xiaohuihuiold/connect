@@ -1,10 +1,12 @@
 import com.xhhold.plugin.version.AndroidConfig
 import com.xhhold.plugin.version.Libs
+import com.google.protobuf.gradle.*
 
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("com.xhhold.plugin.version")
+    id("com.google.protobuf")
 }
 
 android {
@@ -28,19 +30,44 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
 }
 
 dependencies {
+    protobuf(files("../../proto/"))
+    implementation(Libs.protobuf)
     implementation(Libs.coreKtx)
     implementation(Libs.appcompat)
     testImplementation(Libs.junit)
     androidTestImplementation(Libs.testExt)
     androidTestImplementation(Libs.testEspresso)
+}
+
+protobuf {
+
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.21.12"
+    }
+
+    generateProtoTasks {
+        all().forEach {
+            it.builtins {
+                id("java") {
+                    option("lite")
+                }
+
+                id("kotlin") {
+                    option("lite")
+                }
+            }
+        }
+    }
 }

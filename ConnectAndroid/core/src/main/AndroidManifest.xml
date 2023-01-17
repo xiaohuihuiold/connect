@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <permission-group android:name="${applicationId}.permission-group.CORE" />
+
+    <!--连接到核心服务的权限-->
+    <permission
+        android:name="${applicationId}.permission.CONNECT"
+        android:description="@string/permission_connect_description"
+        android:label="@string/permission_connect_label"
+        android:permissionGroup="${applicationId}.permission-group.CORE"
+        android:protectionLevel="dangerous" />
+
+    <application>
+        <service
+            android:name=".CoreService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="${applicationId}.permission.CONNECT" />
+    </application>
+
 </manifest>

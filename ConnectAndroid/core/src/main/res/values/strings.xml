@@ -1,0 +1,4 @@
+<resources>
+    <string name="permission_connect_label">Connect核心服务连接权限</string>
+    <string name="permission_connect_description">连接到Connect核心服务的权限</string>
+</resources>
