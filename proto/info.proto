@@ -1,0 +1,6 @@
+syntax = "proto3";
+package com.xhhold.connect.core.proto;
+
+message Info{
+  string version = 1;
+}
